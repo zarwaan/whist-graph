@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",            // Set the ECMAScript target version (e.g., ES2022) [12]
+    "module": "commonjs",          // Specify the module system to use (e.g., "commonjs" for Node.js) [2, 12]
+    "outDir": "./dist",            // The output directory for compiled JavaScript [3]
+    "rootDir": "./src",            // The root directory of the TypeScript source files [3]
+    "strict": true,                // Enable all strict type checking options [8]
+    "esModuleInterop": true,       // Enables compatibility with CommonJS modules [12]
+    "skipLibCheck": true,          // Skip type checking of declaration files [8]
+    "noImplicitAny": true,         // Raise error on 'any' type implicitly [14]
+    "noImplicitReturns": true,     // Raise error for missing return statement in functions with a return type [14]
+    "noImplicitThis": true,        // Raise error on 'this' implicit any [14]
+    "noImplicitOverride": true,    // Requires `override` keyword when overriding methods [14]
+    "noUnusedLocals": true,        // Raise error for unused local variables [8]
+    "noUnusedParameters": true     // Raise error for unused parameters [8]
+  }
+}
