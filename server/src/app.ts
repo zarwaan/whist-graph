@@ -1,6 +1,8 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
+import searchRouter from './routes/search';
+import movieDetailsRouter from './routes/movie';
 
 dotenv.config();
 
@@ -14,9 +16,13 @@ const app = express();
 app.use(cors({
     origin: CLIENT_URL
 }));
+app.use(express.json());
 
 app.get('/', (_req,res) => {
     res.send("Server running!")
 })
+
+app.use('/api/search',searchRouter);
+app.use('/api/movie',movieDetailsRouter);
 
 app.listen(PORT,() => console.log("Server running!"))
