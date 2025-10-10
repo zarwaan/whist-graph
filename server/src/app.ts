@@ -2,7 +2,9 @@ import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 import searchRouter from './routes/search';
-import movieDetailsRouter from './routes/movie';
+import movieRouter from './routes/movie';
+import tvRouter from './routes/tv';
+import personRouter from './routes/person';
 
 dotenv.config();
 
@@ -23,6 +25,11 @@ app.get('/', (_req,res) => {
 })
 
 app.use('/api/search',searchRouter);
-app.use('/api/movie',movieDetailsRouter);
+
+app.use('/api/movie',movieRouter);
+
+app.use('/api/tv',tvRouter);
+
+app.use('/api/person',personRouter);
 
 app.listen(PORT,() => console.log("Server running!"))

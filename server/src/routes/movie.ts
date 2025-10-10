@@ -1,12 +1,10 @@
 import express from 'express'
-import { fetchAndReturnFromTmdb } from '../utils';
+import { fetchResourceById } from '../utils';
 
-const movieDetailsRouter = express.Router();
+const movieRouter = express.Router();
 
-movieDetailsRouter.get('/:id', async (req, res) => {
-    const movieId = req.params.id;
-    const path = `movie/${movieId}`;
-    await fetchAndReturnFromTmdb(path,res);
-})
+// movie routes
+movieRouter.get('/:id',fetchResourceById("movie"));
+movieRouter.get('/:id/images',fetchResourceById("movie","/images"));
 
-export default movieDetailsRouter;
+export default movieRouter;
