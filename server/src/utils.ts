@@ -63,3 +63,21 @@ export const fetchResourceById = (resource: Resource, subpath: "" | "/images" = 
         const path = `${resource}/${id}${subpath}`;
         await fetchAndReturnFromTmdb(path, res)
     }
+
+export const fetchFromTMDb = async (path: string) : Promise<any> => {
+    try{
+        const response = await fetch(`${baseUrl}/${path}`,fetchOptions);
+        const result = await response.json();
+        if(response.ok){
+            return result
+        }
+        else {
+            console.log(result);
+            return null
+        }
+    }
+    catch (error){
+        console.error(error);
+        return null;
+    }
+}

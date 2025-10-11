@@ -32,3 +32,5 @@ dist-ssr
 test.*
 misc/
 test/
+notes.*
+*.txt

@@ -5,6 +5,7 @@ import searchRouter from './routes/search';
 import movieRouter from './routes/movie';
 import tvRouter from './routes/tv';
 import personRouter from './routes/person';
+import mediaRouter from './routes/media';
 
 dotenv.config();
 
@@ -31,5 +32,7 @@ app.use('/api/movie',movieRouter);
 app.use('/api/tv',tvRouter);
 
 app.use('/api/person',personRouter);
+
+app.use('/api/media',mediaRouter);
 
 app.listen(PORT,() => console.log("Server running!"))

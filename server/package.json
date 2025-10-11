@@ -13,7 +13,8 @@
 			"dist/",
 			"misc/",
 			"test/",
-			"test.*"
+			"test.*",
+			"test.ts"
 		],
 		"delay": "200"
 	},
