@@ -64,6 +64,12 @@ export const fetchResourceById = (resource: Resource, subpath: "" | "/images" = 
         await fetchAndReturnFromTmdb(path, res)
     }
 
+/**
+ * Fetches and returns the response from the specified TMDb API endpoint.
+ * 
+ * @param path The TMDb API endpoint
+ * @returns The TMDb API response or null if errors are encountered
+ */
 export const fetchFromTMDb = async (path: string) : Promise<any> => {
     try{
         const response = await fetch(`${baseUrl}/${path}`,fetchOptions);
@@ -80,4 +86,30 @@ export const fetchFromTMDb = async (path: string) : Promise<any> => {
         console.error(error);
         return null;
     }
+}
+
+/**
+ * Return wether person credit is a self credit or not
+ * 
+ * @param media The media object containing name, title and character
+ * @returns false if credit is a self credit or media genre is reality/talk; true otherwise 
+ */
+export const notSelfCredit = (media: any) : boolean => {
+    return (
+        media['character'] !== "Self" && (media['character'] || media['roles']?.length > 0) &&
+        media['character'] !== "Self - Guest" &&
+        media['character'] !== "Self - Host" &&
+        !media['character'].includes("Self -") &&
+        !media['character'].includes("archive footage") &&
+        media['character'].toLowerCase() !== "himself" &&
+        media['character'].toLowerCase() !== "herself"
+    )
+}
+
+export const titleExistsAndIsNotRealityOrTalk = (media: any) : boolean => {
+    return (
+        (media['title'] || media['name']) && 
+        !media['genre_ids'].includes(10764) &&
+        !media['genre_ids'].includes(10767)
+    )
 }
