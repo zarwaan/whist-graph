@@ -1,41 +1,28 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import type { Media } from '@/types/media'
+import AppName from './components/AppName'
+import ImageCont from './components/ImageCont'
+import MainContent from './components/MainContent'
 
 function App() {
-	const [count, setCount] = useState(0)
-	const media: Media = {
-		id: 12,
-		type: "movie",
-	}
+	const [n, setN] = useState(2);
 	return (
 		<>
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img src={reactLogo} className="logo react" alt="React logo" />
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-				<br/>
-				{media.type}
-			</p>
+		<AppName />
+		<MainContent>
+			<ImageCont n={n}/>
+		</MainContent>
+		<button className='border border-white p-2 m-1 rounded-lg cursor-pointer' 
+		onClick={() => n > 10 ? {} : setN(n => n+1)}>
+			Add Node
+		</button>
+		<button className='border border-white p-2 m-1 rounded-lg cursor-pointer' 
+		onClick={() => n <= 1 ? {} : setN(n => n-1)}>
+			Remove Node
+		</button>
 		</>
 	)
 }
+
 
 export default App
