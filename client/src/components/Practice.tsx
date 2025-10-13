@@ -1,0 +1,42 @@
+import { useEffect, useRef } from 'react'
+import killbill from '../assets/killbill.jpg'
+import starwars from '../assets/starwars.webp'
+import pandp from '../assets/pandp.webp'
+import { shapeConfig } from '@/configs/shape.config';
+
+function Image({index, num} : {num: number, index:number}) {
+        const posters = [killbill, starwars, pandp];
+        const ref = useRef<HTMLDivElement>(null);
+
+        useEffect(() => {
+            const id = requestAnimationFrame(() => {
+                if(ref.current){
+                    ref.current.style.left= `calc(${shapeConfig[num][index].x} - 3em)`
+                    ref.current.style.top= `calc(${shapeConfig[num][index].y} - 4.5em)`
+                }
+            })
+            return () => cancelAnimationFrame(id);
+        },[num,index])
+
+        return (
+            <div className='w-[6em] absolute transition-all duration-500' ref={ref}
+                style={{     
+                    left : `calc(${shapeConfig[num-1]?.[index-1]?.x || '50%'} - 3em)`,
+                    top : `calc(${shapeConfig[num-1]?.[index-1]?.y || '50%'} - 4.5em)`
+                }}
+            >
+                <img src={posters[(index-1) % 3]} alt="Kill Bill" className='rounded-xl'/>
+            </div> 
+        )
+    }
+
+
+export default function Practice({n} : {n: number}) {
+    return (
+        <div className="m-auto w-8/10 border-1 border-white min-h-full relative">
+            {
+                Array.from({length:n},(_,i)=> <Image key={i} index={i+1} num={n}/>)
+            }
+        </div>
+    )
+}
