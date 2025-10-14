@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
+import { useNodeContext } from "./NodeProvider";
 
-export type ViewType = 'people' | 'media'
+type ViewType = 'people' | 'media'
 
 interface CurrentViewType {
     view: ViewType,
@@ -19,16 +20,19 @@ const ViewContext = createContext<CurrentViewType>({
 export default function ViewProvider({children} : {children: React.ReactNode}) {
     const [view, setView] = useState<ViewType>('people');
     const [pos, setPos] = useState<number>(0);
+    const nodectx = useNodeContext();
 
     const setPeopleView = () => {
         setView('people'); 
         setPos(0)
-        console.log('people')
+        console.log('people');
+        nodectx?.clearNodes();
     }
     const setMediaView = () => {
         setView('media');
         setPos(1)
-        console.log('media')
+        console.log('media');
+        nodectx?.clearNodes();
     }
 
     return (

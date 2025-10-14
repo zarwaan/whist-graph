@@ -6,7 +6,7 @@ export default function NavButton({button}: {button: NavButton}) {
     const ViewContext = useViewContext();
     return (
         <div className="flex-1 box-border text-sm">
-            <button className=" rounded-full w-full p-1 px-3 m-auto relative cursor-pointer z-99"
+            <button className=" rounded-full w-full p-1.5 m-auto relative cursor-pointer z-99"
                     onClick={button.onclick}>
                 {
                     button.pos === 0 && <NavButtonHighLight />

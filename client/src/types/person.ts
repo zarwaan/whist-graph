@@ -1,5 +1,6 @@
 export interface Person {
     id: number,
-    name? : string,
-    imagePath? : string
+    type: "person"
+    title: string,
+    imagePath? : string,
 }
