@@ -3,10 +3,10 @@ import ViewProvider from "./ViewProvider";
 
 export default function AppProviders({children} : {children: React.ReactNode}) {
     return (
-            <NodeProvider>
-        <ViewProvider>
+        <NodeProvider>
+            <ViewProvider>
                 {children}
-        </ViewProvider>
-            </NodeProvider>
+            </ViewProvider>
+        </NodeProvider>
     )
 }
