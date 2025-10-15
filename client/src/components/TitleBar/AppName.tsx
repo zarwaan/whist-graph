@@ -4,7 +4,7 @@ export default function AppName({}) {
                         flex-center gap-1">
             <div className="-mt-1">
                 {/* <img src="/vite.svg" alt="" width={22}/> */}
-                <img src="/clapboard.svg" alt="" width={22} />
+                <img src="/clapboard2.svg" alt="" width={22} />
             </div>
             <div>
                 Where Have I Seen Them ?

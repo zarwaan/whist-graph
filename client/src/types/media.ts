@@ -1,6 +1,5 @@
-export interface Media {
-    id: number,
-    type: "movie" | "tv",
-    title: string,
-    imagePath? : string
+import type { resource } from "./resource";
+
+export interface Media extends resource {
+    type: "movie" | "tv"
 }
