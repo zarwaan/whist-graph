@@ -1,3 +1,4 @@
+import NodeControlButton from "../NodeControlButton";
 import AppName from "./AppName";
 import NavBar from "./NavBar/NavBar";
 
@@ -10,7 +11,12 @@ export default function TitleBar({}) {
             <div className="flex-1 flex-center">
                 <NavBar />
             </div>
-            <div className="w-30/100 spacer"></div>
+            <div className="w-30/100">
+                <div className="flex gap-2 w-fit m-auto">
+                    <NodeControlButton role="add" />
+                    <NodeControlButton role="clear"/>
+                </div>
+            </div>
         </div>
     )
 }

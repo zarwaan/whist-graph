@@ -20,7 +20,12 @@ interface CurrentNodeView {
     clearNodes: () => void,
 }
 
-const NodeContext = createContext<CurrentNodeView | null>(null);
+const NodeContext = createContext<CurrentNodeView>({
+    nodeList: [],
+    addNode: () => {},
+    removeNode: () => {},
+    clearNodes: () => {}
+});
 
 export default function NodeProvider({children}: {children: React.ReactNode}) {
     const [nodeList, setNodeList] = useState<NodeList>([]);
