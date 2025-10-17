@@ -1,19 +1,34 @@
 import { shapeConfig } from "@/configs/shape.config";
 import type { Node } from "@/providers/NodeProvider";
 import { Minus } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import useHover from "@/hooks/useHover";
 
 export default function Node({node, num, index, onRemove} : {node: Node, num: number, index: number, onRemove: () => void}) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
+    const [isHovering, ref]= useHover<HTMLDivElement>();
 
     const RemoveButton = () => {
         return (
-            <div className="w-6 aspect-square bg-red-900 aspect-square flex-center rounded-full absolute -top-3 -left-3">
-                <button className='cursor-pointer' onClick={onRemove}>
+            <motion.div className="w-6 aspect-square bg-red-900 aspect-square flex-center rounded-full 
+                                    absolute -top-1 -left-1"
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                        key={`remove-${node.nodeId}`}
+            >
+                <button className='cursor-pointer' onClick={async () => {
+                    if(ref.current)
+                    {
+                        ref.current.style.scale = "0%";
+                        setTimeout(onRemove,200)
+                    }
+                    else
+                        onRemove();
+                }}>
                     <Minus size={14} strokeWidth={5.5}/>
                 </button>
-            </div>
+            </motion.div>
         )
     }
 
@@ -29,19 +44,20 @@ export default function Node({node, num, index, onRemove} : {node: Node, num: nu
     },[num])
 
     return (
-        <div className='w-[6em] absolute transition-all duration-500' ref={ref}
+        <div className='w-[6em] absolute transition-all duration-500 p-2 border-' ref={ref}
             style={{     
                 left : `calc(${shapeConfig[num-1]?.[index-1]?.x || 50}% - 3em)`,
                 top : `calc(${shapeConfig[num-1]?.[index-1]?.y || 51}% - 4.5em)`,
                 opacity: 0
             }}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
         >
             <img src={node.imagePath} alt={node.title} className='rounded-xl border- border-(--text-color) shadow-[0px_1px_15px_rgba(200,200,200,0.2)]'/>
-            {
-                isHovering && <RemoveButton />
-            }
+            <AnimatePresence mode="wait">
+                {
+                    isHovering &&
+                    <RemoveButton />
+                }
+            </AnimatePresence>
         </div> 
     )
 }

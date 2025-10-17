@@ -49,3 +49,18 @@
 	justify-content: center;
 	align-items: center;
 }
+
+@keyframes shake {
+	0%{
+		transform: translateX(0%);
+	}
+	25%{
+		transform: translate(-10%);
+	}
+	75%{
+		transform: translate(10%);
+	}
+	100%{
+		transform: translate(0%);
+	}
+}
