@@ -1,11 +1,12 @@
 import { useNodeContext } from "@/providers/NodeProvider";
 import Node from "./Node";
-import React from "react";
 
-function NodeBox({}) {
+export default function NodeBox({}) {
     const nodectx = useNodeContext();
     return (
-        <div className="m-auto w-8/10 border- border-white min-h-full relative">
+        <div className="m-auto w-8/10 border- border-white min-h-full relative" style={{
+            gridArea: "stack"
+        }}>
             {
                 nodectx?.nodeList.map((node,index) => {
                     return (
@@ -24,5 +25,3 @@ function NodeBox({}) {
         </div>
     )
 }
-
-export default React.memo(NodeBox);

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { useNodeContext } from "./NodeProvider";
 
-type ViewType = 'people' | 'media'
+export type ViewType = 'people' | 'media'
 
 interface CurrentViewType {
     view: ViewType,

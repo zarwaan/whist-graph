@@ -64,3 +64,43 @@
 		transform: translate(0%);
 	}
 }
+
+.border-05 {
+	border-width: 0.5px;
+}
+
+.color-test{
+	color: rgb(198, 210, 255);
+	color: rgb(55, 42, 172);
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+	background: none !important;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3); /* or make this transparent too */
+  border-radius: calc(1px * infinity);
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6); 
+}
+
+.custom-scroll::-webkit-scrollbar-track-piece:end {
+  margin-right: 4px;
+  margin-bottom: 4px; 
+}
+
+.custom-scroll::-webkit-scrollbar-track-piece:start {
+  margin-top: 4px; 
+  margin-left: 4px;
+}
+
+.custom-scroll {
+  overflow-y: auto;
+}
