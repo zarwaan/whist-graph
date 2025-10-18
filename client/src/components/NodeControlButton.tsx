@@ -3,27 +3,30 @@ import { useNodeContext } from "@/providers/NodeProvider"
 import { Eraser, Plus } from "lucide-react";
 import useHover from "@/hooks/useHover";
 import { motion } from "motion/react";
-import { movieSamples } from "@/temp/movies.samples";
+import { useUIContext } from "@/providers/UIProvider";
 
 export default function NodeControlButton({role}: {role: "add" | "clear"}) {
     const nodesCtx = useNodeContext();
+    const uiCtx = useUIContext();
     const [num, setNum] = useState(0);
     const [isHovering, ref] = useHover<HTMLButtonElement>();
 
-    const handleAdd = () => {
-        if(nodesCtx?.nodeList.length as number >= 6)
-        {}
-        else {
-            let newNum = num;
-            if(nodesCtx.nodeList.length === 0)
-                newNum = 0;
-            nodesCtx.addNode({
-                ...movieSamples[newNum % 6],
-                nodeId: newNum
-            });
-            setNum(newNum+1);
-        }
-    }
+    // const handleAdd = () => {
+    //     if(nodesCtx?.nodeList.length as number >= 6)
+    //     {}
+    //     else {
+    //         let newNum = num;
+    //         if(nodesCtx.nodeList.length === 0)
+    //             newNum = 0;
+    //         nodesCtx.addNode({
+    //             ...movieSamples[newNum % 6],
+    //             nodeId: newNum
+    //         });
+    //         setNum(newNum+1);
+    //     }
+    // }
+
+    const handleAdd = uiCtx.openSearchBox;
 
     const handleClear = () => {
         nodesCtx.clearNodes();
