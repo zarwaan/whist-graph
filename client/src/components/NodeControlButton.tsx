@@ -4,29 +4,33 @@ import { Eraser, Plus } from "lucide-react";
 import useHover from "@/hooks/useHover";
 import { motion } from "motion/react";
 import { useUIContext } from "@/providers/UIProvider";
+import { movieSamples } from "@/temp/movies.samples";
 
-export default function NodeControlButton({role}: {role: "add" | "clear"}) {
+export default function NodeControlButton({role, test=false}: {role: "add" | "clear", test?: boolean}) {
     const nodesCtx = useNodeContext();
     const uiCtx = useUIContext();
     const [num, setNum] = useState(0);
     const [isHovering, ref] = useHover<HTMLButtonElement>();
 
-    // const handleAdd = () => {
-    //     if(nodesCtx?.nodeList.length as number >= 6)
-    //     {}
-    //     else {
-    //         let newNum = num;
-    //         if(nodesCtx.nodeList.length === 0)
-    //             newNum = 0;
-    //         nodesCtx.addNode({
-    //             ...movieSamples[newNum % 6],
-    //             nodeId: newNum
-    //         });
-    //         setNum(newNum+1);
-    //     }
-    // }
+    const handleTestAdd = () => {
+        if(nodesCtx?.nodeList.length as number >= 6)
+        {}
+        else {
+            let newNum = num;
+            if(nodesCtx.nodeList.length === 0)
+                newNum = 0;
+            nodesCtx.addNode({
+                ...movieSamples[newNum % 6],
+                nodeId: newNum
+            });
+            setNum(newNum+1);
+        }
+    }
 
-    const handleAdd = uiCtx.openSearchBox;
+    const handleAdd = () => {
+        if(nodesCtx?.nodeList.length as number >= 6) return;
+        uiCtx.openSearchBox();
+    }
 
     const handleClear = () => {
         nodesCtx.clearNodes();
@@ -36,10 +40,13 @@ export default function NodeControlButton({role}: {role: "add" | "clear"}) {
     return (
         <motion.button className='border border-white p-2 m-1 rounded-lg cursor-pointer text-sm flex gap-1' 
 			onClick={() => {
-                if(role === "add")
-                    handleAdd();
-                else if(role === "clear")
-                    handleClear();
+                if(test) handleTestAdd();
+                else{
+                    if(role === "add")
+                        handleAdd();
+                    else if(role === "clear")
+                        handleClear();
+                }
             }}
             ref={ref}
             whileTap={{y: 2}}
@@ -60,7 +67,7 @@ export default function NodeControlButton({role}: {role: "add" | "clear"}) {
                 ""
             }
             {
-                role === "add" ? "Add new node" : role === "clear" ? "Clear all nodes" : ""
+                test ? "Add test" : role === "add" ? "Add new node" : role === "clear" ? "Clear all nodes" : ""
             }
         </motion.button>
     )

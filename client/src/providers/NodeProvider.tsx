@@ -3,11 +3,11 @@ import type { Person } from "@/types/person";
 import { createContext, useContext, useState } from "react";
 
 export interface MediaNode extends Media {
-    nodeId: number
+    nodeId: number | string
 }
 
 export interface PersonNode extends Person {
-    nodeId: number
+    nodeId: number | string
 }
 
 export type Node = MediaNode | PersonNode

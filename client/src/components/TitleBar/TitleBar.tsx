@@ -8,13 +8,14 @@ export default function TitleBar({}) {
             <div className="w-30/100">
                 <AppName />
             </div>
-            <div className="flex-1 flex-center">
-                <NavBar />
+            <div className="w-40/100 flex-center">
+                    <NavBar />
             </div>
-            <div className="w-30/100">
-                <div className="flex gap-2 w-fit m-auto">
+            <div className="w-30/100 flex justify-end">
+                <div className="flex gap-2 w-fit">
                     <NodeControlButton role="add" />
                     <NodeControlButton role="clear"/>
+                    {/* <NodeControlButton role="add" test/> */}
                 </div>
             </div>
         </div>

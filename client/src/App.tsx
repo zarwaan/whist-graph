@@ -6,6 +6,8 @@ import SearchBox from './components/Search/SearchBox'
 import TitleBar from './components/TitleBar/TitleBar'
 import AppProviders from './providers/AppProviders'
 import { useUIContext } from './providers/UIProvider'
+import Overlay from './components/Overlay'
+import Toast from './components/Toast'
 
 function App() {
 	return (
@@ -21,6 +23,12 @@ function AppContent () {
 	const uiCtx = useUIContext();
 	return (
 		<>
+		<AnimatePresence>
+		{
+			uiCtx.isSearchBoxOpen &&
+			<Overlay />
+		}
+		</AnimatePresence>
 		<TitleBar />
 		<MainContent>
 			<NodeBox />
@@ -31,6 +39,7 @@ function AppContent () {
 				}
 			</AnimatePresence>
 		</MainContent>
+		<Toast kind="warning" message={'Hi toast!'} />
 		</>
 	)
 }
