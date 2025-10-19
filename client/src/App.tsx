@@ -39,7 +39,12 @@ function AppContent () {
 				}
 			</AnimatePresence>
 		</MainContent>
-		<Toast kind="warning" message={'Hi toast!'} />
+		<AnimatePresence>
+			{
+				uiCtx.toast &&
+				<Toast kind={uiCtx.toast.kind} message={uiCtx.toast.message} />
+			}
+		</AnimatePresence>
 		</>
 	)
 }

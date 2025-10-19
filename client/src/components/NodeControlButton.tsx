@@ -28,8 +28,15 @@ export default function NodeControlButton({role, test=false}: {role: "add" | "cl
     }
 
     const handleAdd = () => {
-        if(nodesCtx?.nodeList.length as number >= 6) return;
-        uiCtx.openSearchBox();
+        if(nodesCtx?.nodeList.length as number >= 6) {
+            uiCtx.setToast({
+                kind: "warning",
+                message: "You can only add a maximum of 6 nodes at a time"
+            })
+        }
+        else{
+            uiCtx.openSearchBox();
+        }
     }
 
     const handleClear = () => {
