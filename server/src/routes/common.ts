@@ -73,7 +73,7 @@ commonRouter.get('/media', async (req, res) => {
     }
     catch(error: any){
         console.error(error);
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: error.message, name: error.name});
     }
 })
 
@@ -115,7 +115,7 @@ commonRouter.get('/people', async (req, res) => {
     } 
     catch(error: any){
         console.error(error);
-        return res.status(500).json({error: error.message});
+        return res.status(500).json({error: error.message, name: error.name});
     }
 })
 

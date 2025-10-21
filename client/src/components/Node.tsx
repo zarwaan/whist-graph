@@ -4,6 +4,7 @@ import { Minus } from "lucide-react";
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import useHover from "@/hooks/useHover";
+import makeImageSource from "@/utils/makeImageSoruce";
 
 export default function Node({node, num, index, onRemove} : {node: Node, num: number, index: number, onRemove: () => void}) {
     const [isHovering, ref]= useHover<HTMLDivElement>();
@@ -51,7 +52,7 @@ export default function Node({node, num, index, onRemove} : {node: Node, num: nu
                 opacity: 0
             }}
         >
-            <img src={node.imagePath} alt={node.title} className='rounded-xl border- border-(--text-color) shadow-[0px_1px_15px_rgba(200,200,200,0.2)]'/>
+            <img src={makeImageSource(node.imagePath || "", "w185")} alt={node.title} className='rounded-xl border- border-(--text-color) shadow-[0px_1px_15px_rgba(200,200,200,0.2)]'/>
             <AnimatePresence mode="wait">
                 {
                     isHovering &&

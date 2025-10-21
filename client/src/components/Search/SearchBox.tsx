@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import SearchBar from "./SearchBar";
-import { movieSamples } from "@/temp/movies.samples";
 import SearchResult from "./SearchResult";
 import { motion } from "motion/react";
 import { useUIContext } from "@/providers/UIProvider";
@@ -8,8 +7,8 @@ import { Search, SearchX, X } from "lucide-react";
 import type { Media } from "@/types/media";
 import type { Person } from "@/types/person";
 import { useViewContext } from "@/providers/ViewProvider";
-import { peopleSamples } from "@/temp/people.samples";
 import useDebounce from "@/hooks/useDebounce";
+import useFetch from "@/hooks/useFetch";
 
 const CloseButton = () => {
     const uiCtx = useUIContext();
@@ -25,14 +24,21 @@ const CloseButton = () => {
 export default function SearchBox({}) {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const debouncedTerm = useDebounce(searchTerm, 500);
-    const [filtered, setFiltered] = useState<Array<Media | Person>>([]);
+    const [searchResult, setSearchResults] = useState<Array<Media | Person>>([]);
     const viewCtx = useViewContext();
+    const {data, fetchData} = useFetch(``);
+    
+    useEffect(() => {
+        const resource = viewCtx.view === "media" ? "person" : "media"
+        const url = `search/${resource}?q=${encodeURIComponent(debouncedTerm)}`
+        fetchData(url)
+    },[debouncedTerm,viewCtx.view])
 
     useEffect(() => {
-        const arr = viewCtx.view === "people" ? movieSamples : peopleSamples;
-        setFiltered(arr.filter((item,_index) => 
-                            item.title.toLowerCase().includes(debouncedTerm.toLowerCase())))
-    },[debouncedTerm,viewCtx.view])
+        if(data){
+            setSearchResults(data.result)
+        }
+    },[data])
 
     
     return (
@@ -61,8 +67,8 @@ export default function SearchBox({}) {
                             <span>Start typing to see search results</span>
                         </span>
                         :
-                        filtered.length > 0 ?
-                        filtered.map((item) => <SearchResult item={item} key={item.id}/>)
+                        searchResult.length > 0 ?
+                        searchResult.map((item) => <SearchResult item={item} key={item.id}/>)
                         :
                         <span className="flex gap-2 w-fit m-auto leading-[1.3]">
                             <div><SearchX size={18}/></div>

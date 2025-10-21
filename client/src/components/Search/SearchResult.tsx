@@ -2,6 +2,7 @@ import { useNodeContext } from "@/providers/NodeProvider";
 import { useUIContext } from "@/providers/UIProvider";
 import type { Media } from "@/types/media";
 import type { Person } from "@/types/person";
+import makeImageSource from "@/utils/makeImageSoruce";
 import { motion } from "motion/react";
 
 export default function SearchResult({item}: {item: Media | Person}) {
@@ -30,7 +31,7 @@ export default function SearchResult({item}: {item: Media | Person}) {
                             UIctx.closeSearchBox();
                         }}>
             <div className="flex-1">
-                <img src={item.imagePath} alt={item.title} className="rounded-[calc(20px-var(--spacing)*2)]"/>
+                <img src={makeImageSource(item.imagePath || "", "w154")} alt={item.title} className="rounded-[calc(20px-var(--spacing)*2)]"/>
             </div>
             <div className="flex flex-col w-80/100">
                 <span className="text-xl font-bold max-w-full w-fit truncate">

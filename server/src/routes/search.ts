@@ -24,8 +24,8 @@ const makeMediaReponse = (res: any) => {
                 return {
                     id: r.id,
                     type: r.media_type,
-                    title: r.title,
-                    year: (r.release_date as string)?.substring(0,4) ?? "",
+                    title: r.title || r.name,
+                    year: (r.release_date as string || r.first_air_date as string)?.substring(0,4) ?? "",
                     imagePath: r.poster_path ?? ""
                 }   
             })
@@ -39,7 +39,7 @@ searchRouter.get('/media',async (req,res) => {
     if(result)
     {
         result = makeMediaReponse(result)
-        return res.status(200).json(result);
+        return res.status(200).json({result});
     }
     else return res.status(500).json({message: "Some error occured"})
 });
@@ -51,7 +51,7 @@ searchRouter.get('/person',async (req, res) => {
     let result = await fetchFromTMDb(path);
     if(result) {
         result = makePersonResponse(result)
-        return res.status(200).json(result);
+        return res.status(200).json({result});
     }
     else return res.status(500).json({message: "Some error occured"})
 });
