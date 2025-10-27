@@ -2,7 +2,7 @@ import { useNodeContext } from "@/providers/NodeProvider";
 import { useUIContext } from "@/providers/UIProvider";
 import type { Media } from "@/types/media";
 import type { Person } from "@/types/person";
-import makeImageSource from "@/utils/makeImageSoruce";
+import makeImageSource from "@/utils/makeImageSource";
 import { motion } from "motion/react";
 
 export default function SearchResult({item}: {item: Media | Person}) {

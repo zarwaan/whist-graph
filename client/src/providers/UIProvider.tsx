@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
+import { useNodeContext } from "./NodeProvider";
 
 export type ToastKind = "error" | "warning";
 export interface Toast {
@@ -11,7 +12,8 @@ interface UIState {
     openSearchBox: () => void,
     closeSearchBox: () => void
     toast: Toast | null,
-    setToast: (t: Toast | null) => void
+    setToast: (t: Toast | null) => void,
+    showCommon: boolean
 }
 
 const UIContext = createContext<UIState>({
@@ -19,7 +21,8 @@ const UIContext = createContext<UIState>({
     openSearchBox: () => {},
     closeSearchBox: () => {},
     toast: null,
-    setToast: () => {}
+    setToast: () => {},
+    showCommon: false
 })
 
 
@@ -30,9 +33,17 @@ export default function UIProvider({children} : {children: React.ReactNode}) {
 
     const [toast, setToast] = useState<Toast | null>(null); 
 
+    const [showCommon, setShowCommon] = useState(false)
+
+    const {nodeList} = useNodeContext();
+    useEffect(() => {
+        if(nodeList.length > 1) setShowCommon(true)
+        else setShowCommon(false)
+    },[nodeList])
+
     return (
         <UIContext.Provider value={{
-            isSearchBoxOpen, openSearchBox, closeSearchBox, toast, setToast
+            isSearchBoxOpen, openSearchBox, closeSearchBox, toast, setToast, showCommon
         }}>
             {children}
         </UIContext.Provider> 

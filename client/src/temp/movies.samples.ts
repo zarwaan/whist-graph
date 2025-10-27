@@ -10,7 +10,21 @@ import type { Media } from '@/types/media'
 
 export const movieSamples: Array<Media> = [
     {
-        id: 1,
+        id: 1396,
+        title: "Breaking Bad",
+        type: "tv",
+        imagePath: "",
+        year: '2008'
+    },
+    {
+        id: 1100,
+        title: "How I Met Your Mother",
+        type: "tv",
+        imagePath: "",
+        year: '2005'
+    },
+    {
+        id: 24,
         title: "Kill Bill Vol. 1",
         type: "movie",
         imagePath: "~~~"+ killbill,

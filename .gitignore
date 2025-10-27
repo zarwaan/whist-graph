@@ -34,3 +34,4 @@ misc/
 test/
 notes.*
 *.txt
+.todo

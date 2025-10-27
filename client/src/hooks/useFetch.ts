@@ -30,6 +30,7 @@ export default function useFetch(endpoint: string, additionalOptions: object = {
         }
         catch(error: any){
             setError({message: error.message})
+            setData(null)
             console.log(error)
         }
         finally {

@@ -1,9 +1,12 @@
 import { useNodeContext } from "@/providers/NodeProvider";
 import Node from "./Node";
 import CentralNode from "./CentralNode/CentralNode";
+import { useUIContext } from "@/providers/UIProvider";
 
 export default function NodeBox({}) {
     const nodectx = useNodeContext();
+    const {showCommon} = useUIContext();
+
     return (
         <div className="m-auto w-8/10 border- border-white min-h-full relative" style={{
             gridArea: "stack"
@@ -23,7 +26,7 @@ export default function NodeBox({}) {
                     )
                 })
             }
-            <CentralNode />
+            {showCommon && <CentralNode />}
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { Minus } from "lucide-react";
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import useHover from "@/hooks/useHover";
-import makeImageSource from "@/utils/makeImageSoruce";
+import makeImageSource from "@/utils/makeImageSource";
 
 export default function Node({node, num, index, onRemove} : {node: Node, num: number, index: number, onRemove: () => void}) {
     const [isHovering, ref]= useHover<HTMLDivElement>();

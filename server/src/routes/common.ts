@@ -1,32 +1,42 @@
 import express from 'express'
 import { fetchFromTMDb, notSelfCredit, titleExistsAndIsNotRealityOrTalk } from '../utils';
+import { Media } from '../types/media';
+import { Person } from '../types/person';
 
 const commonRouter = express.Router();
 
-interface media {
+interface MediaQuery {
     id: string,
     type: "movie" | "tv"
 }
 
-const stringifyObject = (c: any, resource: "media" | "person") : string=> {
+const stringifyObject = (r: any, resource: "media" | "person") : string=> {
     if(resource === "media")
-        return JSON.stringify({
-            id: c.id,
-            type: c.media_type,
-            title: c.title || c.name,
-            imagePath: c.poster_path || null
-        })
+    {
+        const media: Media = {
+            id: r.id,
+            type: r.media_type,
+            title: r.title || r.name,
+            year: (r.release_date as string || r.first_air_date as string)?.substring(0,4) ?? "",
+            imagePath: r.poster_path ?? ""
+        }
+        return JSON.stringify(media)
+    }
     else
-        return JSON.stringify({
-            id: c.id,
-            name: c.name,
-            imagePath: c.profile_path || null
-        })
+    {
+        const person : Person = {
+            id: r.id,
+            type: "person",
+            title: r.name,
+            imagePath: r.profile_path ?? ""
+        }
+        return JSON.stringify(person)
+    }
 }
 
 const makeMediaIdObject = (mediaQuery: string) => {
     const mediaArray = mediaQuery.split(',');
-    const media: Array<media> = [];
+    const media: Array<MediaQuery> = [];
     mediaArray.forEach(m => {
         if(m.substring(0,2) === "tv")
             media.push({
