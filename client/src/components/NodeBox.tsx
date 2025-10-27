@@ -1,5 +1,6 @@
 import { useNodeContext } from "@/providers/NodeProvider";
 import Node from "./Node";
+import CentralNode from "./CentralNode/CentralNode";
 
 export default function NodeBox({}) {
     const nodectx = useNodeContext();
@@ -16,12 +17,13 @@ export default function NodeBox({}) {
                             index={index + 1}
                             key = {node.nodeId}
                             onRemove = {
-                                () => nodectx.removeNode(node.nodeId)
+                                () => nodectx.removeNode(node.nodeId) 
                             }
                         />
                     )
                 })
             }
+            <CentralNode />
         </div>
     )
 }

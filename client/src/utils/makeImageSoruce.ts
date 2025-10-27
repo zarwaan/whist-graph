@@ -10,6 +10,7 @@ type sizes =
     "original"
 
 export default function makeImageSource(imagePath: string, size: sizes ) {
+    if(imagePath.startsWith("~~~")) return imagePath.substring(3)
     if(imagePath === "") return noImg
     return `${import.meta.env.VITE_TMDB_IMAGE_URL_ROOT}/${size}${imagePath}`
 }

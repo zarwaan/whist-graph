@@ -13,42 +13,42 @@ export const movieSamples: Array<Media> = [
         id: 1,
         title: "Kill Bill Vol. 1",
         type: "movie",
-        imagePath: killbill,
+        imagePath: "~~~"+ killbill,
         year: '2003'
     },
     {
         id: 2,
         title: "Star Wars",
         type: "movie",
-        imagePath: starwars,
+        imagePath: "~~~"+ starwars,
         year: '1997'
     },
     {
         id: 3,
         title: "Pride and Prejudice",
         type: "movie",
-        imagePath: pandp,
+        imagePath: "~~~"+ pandp,
         year: '2005'
     },
     {
         id: 4,
         title: "Om Shanti Om",
         type: "movie",
-        imagePath: omshantiom,
+        imagePath: "~~~"+ omshantiom,
         year: '2008'
     },
     {
         id: 5,
         title: "The Lego Movie",
         type: "movie",
-        imagePath: thelegomovie,
+        imagePath: "~~~"+ thelegomovie,
         year: '2014'
     },
     {
         id: 6,
         title: "Laila Majnu",
         type: "movie",
-        imagePath: lailamajnu,
+        imagePath: "~~~"+ lailamajnu,
         year: '2018'
     }
 ]

@@ -11,37 +11,37 @@ export const peopleSamples : Array<Person> = [
         id: 1,
         title: "Shah Rukh Khan",
         type: "person",
-        imagePath: srk
+        imagePath: "~~~"+ srk
     },
     {
         id: 2,
         title: "Steve Carell",
         type: "person",
-        imagePath: steve
+        imagePath: "~~~"+ steve
     },
     {
         id: 3,
         title: "Deepika Padukone",
         type: "person",
-        imagePath: deepika
+        imagePath: "~~~"+ deepika
     },
     {
         id: 4,
         title: "Emilia Clarke",
         type: "person",
-        imagePath: emilia
+        imagePath: "~~~"+ emilia
     },
     {
         id: 5,
         title: "Michael B. Jordan",
         type: "person",
-        imagePath: michael
+        imagePath: "~~~"+ michael
     },
     {
         id: 6,
         title: "Ryan Gosling",
         type: "person",
-        imagePath: ryan
+        imagePath: "~~~"+ ryan
     },
     
 ]

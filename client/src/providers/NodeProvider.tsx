@@ -3,11 +3,11 @@ import type { Person } from "@/types/person";
 import { createContext, useContext, useState } from "react";
 
 export interface MediaNode extends Media {
-    nodeId: number | string
+    nodeId: string
 }
 
 export interface PersonNode extends Person {
-    nodeId: number | string
+    nodeId: string
 }
 
 export type Node = MediaNode | PersonNode
@@ -16,7 +16,7 @@ export type NodeList<T extends Node = Node> = Array<T>
 interface CurrentNodeView {
     nodeList: NodeList,
     addNode: (node: Node) => void,
-    removeNode: (id: number) => void,
+    removeNode: (id: string) => void,
     clearNodes: () => void,
 }
 
@@ -34,7 +34,7 @@ export default function NodeProvider({children}: {children: React.ReactNode}) {
         setNodeList(nl => [...nl,node]);
     }
 
-    const removeNode = (nodeId: number) => {
+    const removeNode = (nodeId: string) => {
         const updated = nodeList.filter(node => node.nodeId !== nodeId);
         setNodeList(updated);
     }

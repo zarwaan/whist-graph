@@ -15,7 +15,7 @@ export default function TitleBar({}) {
                 <div className="flex gap-2 w-fit">
                     <NodeControlButton role="add" />
                     <NodeControlButton role="clear"/>
-                    {/* <NodeControlButton role="add" test/> */}
+                    <NodeControlButton role="add" test/>
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ export default function NodeControlButton({role, test=false}: {role: "add" | "cl
                 newNum = 0;
             nodesCtx.addNode({
                 ...movieSamples[newNum % 6],
-                nodeId: newNum
+                nodeId: ''+num,
             });
             setNum(newNum+1);
         }
@@ -74,7 +74,7 @@ export default function NodeControlButton({role, test=false}: {role: "add" | "cl
                 ""
             }
             {
-                test ? "Add test" : role === "add" ? "Add new node" : role === "clear" ? "Clear all nodes" : ""
+                test ? "test" : role === "add" ? "Add new node" : role === "clear" ? "Clear all nodes" : ""
             }
         </motion.button>
     )
