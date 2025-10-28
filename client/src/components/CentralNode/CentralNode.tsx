@@ -8,6 +8,7 @@ import type { Media } from "@/types/media";
 import type { Person } from "@/types/person";
 import useFetch from "@/hooks/useFetch";
 import { motion } from "motion/react";
+import Loader from "../Loader";
 
 export default function CentralNode({}) {
     const viewCtx = useViewContext();
@@ -54,7 +55,10 @@ export default function CentralNode({}) {
             <div className="flex gap-5 overflow-x-auto custom-scroll pb-3 pt-3 w-fit max-w-full m-auto"
             >
                 {
-                    loading && <span>Loading...</span>
+                    loading && 
+                    <div className="w-[5em]">
+                        <Loader />
+                    </div>
                 }
                 {
                     (data && !loading && data.common.length > 0) && commonNodes.map((item) => 

@@ -9,6 +9,7 @@ import type { Person } from "@/types/person";
 import { useViewContext } from "@/providers/ViewProvider";
 import useDebounce from "@/hooks/useDebounce";
 import useFetch from "@/hooks/useFetch";
+import Loader from "../Loader";
 
 const CloseButton = () => {
     const uiCtx = useUIContext();
@@ -26,7 +27,7 @@ export default function SearchBox({}) {
     const debouncedTerm = useDebounce(searchTerm, 500);
     const [searchResult, setSearchResults] = useState<Array<Media | Person>>([]);
     const viewCtx = useViewContext();
-    const {data, fetchData} = useFetch(``);
+    const {data, loading, fetchData} = useFetch(``);
     
     useEffect(() => {
         const resource = viewCtx.view === "media" ? "person" : "media"
@@ -66,6 +67,11 @@ export default function SearchBox({}) {
                             <div><Search size={18}/></div>
                             <span>Start typing to see search results</span>
                         </span>
+                        :
+                        loading ? 
+                        <div className="w-15/100 m-auto">
+                            <Loader />
+                        </div>
                         :
                         searchResult.length > 0 ?
                         searchResult.map((item) => <SearchResult item={item} key={item.id}/>)

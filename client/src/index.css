@@ -66,6 +66,30 @@
 	}
 }
 
+@keyframes loader-clap {
+	0%{
+		transform: rotate(0deg);
+	}
+	50%{
+		transform: rotate(-45deg);
+	}
+	100%{
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes loader-bounce {
+	0%{
+		transform: translateY(0em);
+	}
+	50%{
+		transform: translateY(0.5rem);
+	}
+	100%{
+		transform: translateY(0rem);
+	}
+}
+
 .border-05 {
 	border-width: 0.5px;
 }
