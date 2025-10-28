@@ -21,7 +21,7 @@ export const peopleSamples : Array<Person> = [
     },
     {
         id: 3,
-        title: "Deepika Padukone",
+        title: "Deepika Padukone long long long long long long long long long long long long long long",
         type: "person",
         imagePath: "~~~"+ deepika
     },

@@ -2,6 +2,7 @@ import { useNodeContext } from "@/providers/NodeProvider";
 import Node from "./Node";
 import CentralNode from "./CentralNode/CentralNode";
 import { useUIContext } from "@/providers/UIProvider";
+import { AnimatePresence } from "motion/react";
 
 export default function NodeBox({}) {
     const nodectx = useNodeContext();
@@ -26,7 +27,9 @@ export default function NodeBox({}) {
                     )
                 })
             }
-            {showCommon && <CentralNode />}
+            <AnimatePresence>
+                {showCommon && <CentralNode />}
+            </AnimatePresence>
         </div>
     )
 }
