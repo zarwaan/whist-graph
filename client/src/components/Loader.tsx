@@ -13,7 +13,8 @@ export default function Loader({}) {
                     Array.from({length: 7},(_,i) => <div className={`${i%2===0 ? "bg-(--text-color)": ""} 
                     ${(i===6) ? "rounded-r-lg" : ""}
                     ${i===0 ? "rounded-l-lg" : ""}
-                    `} />)
+                    `}
+                    key={i} />)
                 }
             </div>
             <div className="border w-67/100 m-auto h-9/100 grid grid-rows-1 grid-cols-7 rounded-lg">
@@ -21,7 +22,8 @@ export default function Loader({}) {
                     Array.from({length: 7},(_,i) => <div className={`${i%2===0 ? "bg-(--text-color)": ""} 
                     ${(i===6) ? "rounded-r-lg" : ""}
                     ${i===0 ? "rounded-l-lg" : ""}
-                    `} />)
+                    `} 
+                    key={i}/>)
                 }
             </div>
             <div className="w-5/10 border-2 h-4/10 m-auto flex flex-col rounded-b-md justify-evenly items-center">

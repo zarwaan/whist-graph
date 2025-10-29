@@ -1,37 +1,57 @@
 import { shapeConfig } from "@/configs/shape.config";
 import type { Node } from "@/providers/NodeProvider";
-import { Minus } from "lucide-react";
+import { Grid2X2Plus, Grid2X2X, Minus } from "lucide-react";
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import useHover from "@/hooks/useHover";
 import makeImageSource from "@/utils/makeImageSource";
 
-export default function Node({node, num, index, onRemove} : {node: Node, num: number, index: number, onRemove: () => void}) {
+export default function Node({node, num, index, onRemove, toggleExclusion} : {node: Node, num: number, index: number, onRemove: () => void, toggleExclusion: () => void}) {
     const [isHovering, ref]= useHover<HTMLDivElement>();
 
-    const RemoveButton = () => {
+    const ControlButton = ({action} : {action: "delete" | "exclude"}) => {
         return (
-            <motion.div className="w-6 aspect-square bg-red-900 aspect-square flex-center rounded-full 
-                                    absolute -top-1 -left-1"
-                        initial={{opacity: 0}}
-                        animate={{opacity: 1}}
-                        exit={{opacity: 0}}
-                        key={`remove-${node.nodeId}`}
+            <motion.div
+                className={`w-6 aspect-square aspect-square flex-center rounded-full absolute -top-1
+                            ${action==="delete" ? "bg-red-900 -left-1" : action === "exclude" ? "bg-purple-900 -right-1" : ""}    
+                        `}
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}
+                key={`${action}-${node.nodeId}`}
             >
-                <button className='cursor-pointer' onClick={async () => {
-                    if(ref.current)
-                    {
-                        ref.current.style.scale = "0%";
-                        setTimeout(onRemove,200)
+                <button className="cursor-pointer"
+                        onClick={async () => {
+                            if(action === "delete"){
+                                if(ref.current)
+                                {
+                                    ref.current.style.scale = "0%";
+                                    setTimeout(onRemove,200)
+                                }
+                                else
+                                    onRemove();
+                            }
+                            if(action === "exclude"){
+                                // if(ref.current){
+                                //     (ref.current.querySelector('img') as HTMLImageElement).style.filter = 
+                                //     `grayscale(${node.excluded ? "0%" : "100%"})`;
+                                    toggleExclusion();
+                                // }
+                            }
+                        }}
+                >
+                    {action==="delete" && <Minus size={14} strokeWidth={5.5}/>}
+                    {action==="exclude" && 
+                        <>
+                            {!node.excluded && <Grid2X2X size={14} strokeWidth={2.5} />}
+                            {node.excluded && <Grid2X2Plus size={14} strokeWidth={2.5} />}
+                        </>
                     }
-                    else
-                        onRemove();
-                }}>
-                    <Minus size={14} strokeWidth={5.5}/>
                 </button>
             </motion.div>
         )
     }
+    
 
     useEffect(() => {
         const id = requestAnimationFrame(() => {
@@ -52,11 +72,20 @@ export default function Node({node, num, index, onRemove} : {node: Node, num: nu
                 opacity: 0
             }}
         >
-            <img src={makeImageSource(node.imagePath || "", "w185")} alt={node.title} className='rounded-xl border- border-(--text-color) shadow-[0px_1px_15px_rgba(200,200,200,0.2)]'/>
+            <img src={makeImageSource(node.imagePath || "", "w185")} alt={node.title} 
+                className='rounded-xl border- border-(--text-color) shadow-[0px_1px_15px_rgba(200,200,200,0.2)] 
+                transition-all duration-500'
+                style={{
+                    filter : node.excluded ? 'grayscale(100%)' : 'grayscale(0%)'
+                }}
+            />
             <AnimatePresence mode="wait">
                 {
                     isHovering &&
-                    <RemoveButton />
+                    <>
+                        <ControlButton action="delete" />
+                        <ControlButton action="exclude" />
+                    </>
                 }
             </AnimatePresence>
         </div> 

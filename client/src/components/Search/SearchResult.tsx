@@ -24,7 +24,8 @@ export default function SearchResult({item}: {item: Media | Person}) {
                                         nodeId: JSON.stringify({
                                             id: item.id,
                                             type: item.type
-                                        })
+                                        }),
+                                        excluded: false
                                     }
                                 )
                             )

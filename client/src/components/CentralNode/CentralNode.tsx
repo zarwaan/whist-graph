@@ -19,10 +19,12 @@ export default function CentralNode({}) {
         if(nodeCtx.nodeList.length <= 1) return;
         let url = viewCtx.view === "media" ? `common/media?personIds=` : "common/people?media=";
         nodeCtx.nodeList.forEach(n => {
-            if(viewCtx.view === "people")
-                url += `${n.type}${n.id},`
-            else 
-                url += `${n.id},`
+            if(!n.excluded){
+                if(viewCtx.view === "people")
+                    url += `${n.type}${n.id},`
+                else 
+                    url += `${n.id},`
+            }
         })
         fetchData(url.slice(0,-1))
     },[nodeCtx.nodeList,viewCtx.view])
@@ -62,7 +64,7 @@ export default function CentralNode({}) {
                 }
                 {
                     (data && !loading && data.common.length > 0) && commonNodes.map((item) => 
-                        <CommonNode node={{...item, nodeId: ''+item.id}} key={item.id}/>
+                        <CommonNode node={{...item, nodeId: ''+item.id, excluded: false}} key={item.id}/>
                     )
                     
                 }

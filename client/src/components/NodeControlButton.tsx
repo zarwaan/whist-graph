@@ -22,6 +22,7 @@ export default function NodeControlButton({role, test=false}: {role: "add" | "cl
             nodesCtx.addNode({
                 ...movieSamples[newNum % 6],
                 nodeId: ''+num,
+                excluded: false
             });
             setNum(newNum+1);
         }

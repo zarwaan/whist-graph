@@ -23,6 +23,9 @@ export default function NodeBox({}) {
                             onRemove = {
                                 () => nodectx.removeNode(node.nodeId) 
                             }
+                            toggleExclusion={
+                                () => nodectx.toggleExclusion(node.nodeId)
+                            }
                         />
                     )
                 })

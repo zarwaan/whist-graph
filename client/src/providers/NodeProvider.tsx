@@ -3,11 +3,13 @@ import type { Person } from "@/types/person";
 import { createContext, useContext, useState } from "react";
 
 export interface MediaNode extends Media {
-    nodeId: string
+    nodeId: string,
+    excluded: boolean
 }
 
 export interface PersonNode extends Person {
-    nodeId: string
+    nodeId: string,
+    excluded: boolean
 }
 
 export type Node = MediaNode | PersonNode
@@ -17,6 +19,7 @@ interface CurrentNodeView {
     nodeList: NodeList,
     addNode: (node: Node) => void,
     removeNode: (id: string) => void,
+    toggleExclusion: (id: string) => void,
     clearNodes: () => void,
 }
 
@@ -24,6 +27,7 @@ const NodeContext = createContext<CurrentNodeView>({
     nodeList: [],
     addNode: () => {},
     removeNode: () => {},
+    toggleExclusion: () => {},
     clearNodes: () => {}
 });
 
@@ -39,13 +43,18 @@ export default function NodeProvider({children}: {children: React.ReactNode}) {
         setNodeList(updated);
     }
 
+    const toggleExclusion = (nodeId: string) => {
+        const updated = nodeList.map((node) : Node => node.nodeId === nodeId ? {...node, excluded: !node.excluded} : node)
+        setNodeList(updated);
+    }
+
     const clearNodes = () => {
         setNodeList([]);
     }
 
     return (
         <NodeContext.Provider value={{
-            nodeList, addNode, removeNode, clearNodes
+            nodeList, addNode, removeNode, clearNodes, toggleExclusion
         }}>
             {children}
         </NodeContext.Provider>
