@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./client
+    container_name: whist-graph-client
+    ports:
+      - "5173:5173"
+    env_file:
+      - ./client/.env
+    depends_on:
+      - server
+    volumes:
+      - ./client:/whist-graph/client
+      - /whist-graph/client/node_modules
+    
+  server:
+    build:
+      context: ./server
+    container_name: whist-graph-server
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./server/.env
+    volumes:
+      - ./server:/whist-graph/server
+      - /whist-graph/server/node_modules
+    
