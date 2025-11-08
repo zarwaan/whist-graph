@@ -31,8 +31,11 @@ export default function SearchBox({}) {
     
     useEffect(() => {
         const resource = viewCtx.view === "media" ? "person" : "media"
-        const url = `search/${resource}?q=${encodeURIComponent(debouncedTerm)}`
-        fetchData(url)
+        if(debouncedTerm)
+        {
+            const url = `search/${resource}?q=${encodeURIComponent(debouncedTerm)}`
+            fetchData(url)
+        }
     },[debouncedTerm,viewCtx.view])
 
     useEffect(() => {
@@ -53,7 +56,7 @@ export default function SearchBox({}) {
             animate={{opacity: 1, scale: '100%'}}
             exit={{opacity: 0, scale: '0%'}}
             // transition={{duration: 0.3, ease: 'sp'}}    
-            transition={{type:'spring',bounce: 0.27,duration:1}}
+            transition={{duration:0.35, ease:"easeInOut"}}
         >
             <CloseButton />
             <div className="flex flex-col py-3 gap-2 bg-indigo-40080 rounded-xl flex-1 w-full">

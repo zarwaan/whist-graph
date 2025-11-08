@@ -25,13 +25,11 @@ export default function ViewProvider({children} : {children: React.ReactNode}) {
     const setPeopleView = () => {
         setView('people'); 
         setPos(0)
-        console.log('people');
         nodectx?.clearNodes();
     }
     const setMediaView = () => {
         setView('media');
         setPos(1)
-        console.log('media');
         nodectx?.clearNodes();
     }
 

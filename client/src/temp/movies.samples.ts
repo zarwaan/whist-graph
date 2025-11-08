@@ -4,6 +4,8 @@ import pandp from '@/assets/images/posters/pandp.webp'
 import omshantiom from '@/assets/images/posters/omshantiom.webp'
 import thelegomovie from '@/assets/images/posters/thelegomovie.webp'
 import lailamajnu from '@/assets/images/posters/lailamajnu.webp'
+import bb from '@/assets/images/posters/bb.webp'
+import himym from '@/assets/images/posters/himym.webp'
 
 import type { Media } from '@/types/media'
 
@@ -13,14 +15,14 @@ export const movieSamples: Array<Media> = [
         id: 1396,
         title: "Breaking Bad",
         type: "tv",
-        imagePath: "",
+        imagePath: "~~~"+ bb,
         year: '2008'
     },
     {
         id: 1100,
         title: "How I Met Your Mother",
         type: "tv",
-        imagePath: "",
+        imagePath: "~~~"+ himym,
         year: '2005'
     },
     {

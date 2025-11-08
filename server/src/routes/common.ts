@@ -105,8 +105,8 @@ commonRouter.get('/people', async (req, res) => {
         const commonPeople = 
             allCredits.reduce((common, credits, index) => {
                 const items = [
-                    ...credits.cast.map((c: any) => stringifyObject(c, "person")),
-                    ...credits.crew.filter((c: any) => {
+                    ...credits?.cast.map((c: any) => stringifyObject(c, "person")),
+                    ...credits?.crew.filter((c: any) => {
                         if(c.job){
                             return (c.job as string).toLowerCase() === "director"
                         }

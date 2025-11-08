@@ -4,8 +4,10 @@ import { useEffect, useRef } from "react";
 
 function Emphasis({text}: {text: string}) {
     return (
-        <span className="bg-(--text-color) bg-blue-100 text-blue-800 rounded-2xl p-1.5 px-3 font-bold">
-            {text}
+        <span className="bg-blue-100 rounded-2xl p-1.5 px-3 font-bold">
+            <span className="mix-blend-difference">
+                {text}
+            </span>
         </span>
     )
 }

@@ -12,13 +12,14 @@ export default function NodeBox({}) {
     const {showCommon} = useUIContext();
 
     return (
-        <div className="m-auto w-8/10 border- border-white min-h-full relative" style={{
+        <div className="m-auto w-8/10 border- border-white h-full relative" style={{
             gridArea: "stack"
         }}>
             <AnimatePresence>
             {
                 nodectx.nodeList.length === 0 &&
-                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} 
+                transition={{duration: 0.5, ease:"linear"}}>
                     <Greeting />
                     <AnimatedLine />
                 </motion.div>

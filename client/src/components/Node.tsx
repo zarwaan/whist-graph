@@ -73,7 +73,7 @@ export default function Node({node, num, index, onRemove, toggleExclusion} : {no
             }}
         >
             <img src={makeImageSource(node.imagePath || "", "w185")} alt={node.title} 
-                className='rounded-xl border- border-(--text-color) shadow-[0px_1px_15px_rgba(200,200,200,0.2)] 
+                className='rounded-xl border-05 border-(--text-color) shadow-[0px_1px_15px_rgba(200,200,200,0.2)] 
                 transition-all duration-500'
                 style={{
                     filter : node.excluded ? 'grayscale(100%)' : 'grayscale(0%)'
@@ -88,6 +88,10 @@ export default function Node({node, num, index, onRemove, toggleExclusion} : {no
                     </>
                 }
             </AnimatePresence>
+            {
+                isHovering &&
+                <div className="text-[13px] line-clamp-2">{node.title}</div>
+            }
         </div> 
     )
 }

@@ -17,6 +17,7 @@ export default function SearchBar({searchTerm, setSearchTerm} : {searchTerm: str
                 placeholder={
                     `Search for ${mode === "people" ? "movies and TV shows" : "people"}...`
                 }
+                autoFocus
             />
         </div>
     )

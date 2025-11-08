@@ -27,6 +27,8 @@
 	background-color: var(--background-color);
 	font-family: var(--font-style);
 
+	background-image: linear-gradient(to bottom right, var(--background-color), rgb(19, 26, 45), rgb(22, 22, 30));
+
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
