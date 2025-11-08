@@ -1,3 +1,4 @@
+import LineProvider from "./LineProvider";
 import NodeProvider from "./NodeProvider";
 import UIProvider from "./UIProvider";
 import ViewProvider from "./ViewProvider";
@@ -7,7 +8,9 @@ export default function AppProviders({children} : {children: React.ReactNode}) {
         <NodeProvider>
             <ViewProvider>
                 <UIProvider>
-                    {children}
+                    <LineProvider>
+                        {children}
+                    </LineProvider>
                 </UIProvider>
             </ViewProvider>
         </NodeProvider>

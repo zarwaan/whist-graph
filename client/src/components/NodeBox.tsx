@@ -3,6 +3,9 @@ import Node from "./Node";
 import CentralNode from "./CentralNode/CentralNode";
 import { useUIContext } from "@/providers/UIProvider";
 import { AnimatePresence } from "motion/react";
+import Greeting from "./Greeting";
+import AnimatedLine from "./AnimatedLine";
+import { motion } from "motion/react";
 
 export default function NodeBox({}) {
     const nodectx = useNodeContext();
@@ -12,6 +15,15 @@ export default function NodeBox({}) {
         <div className="m-auto w-8/10 border- border-white min-h-full relative" style={{
             gridArea: "stack"
         }}>
+            <AnimatePresence>
+            {
+                nodectx.nodeList.length === 0 &&
+                <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+                    <Greeting />
+                    <AnimatedLine />
+                </motion.div>
+            }
+            </AnimatePresence>
             {
                 nodectx?.nodeList.map((node,index) => {
                     return (

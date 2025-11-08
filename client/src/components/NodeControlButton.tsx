@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNodeContext } from "@/providers/NodeProvider"
 import { Eraser, Plus } from "lucide-react";
 import useHover from "@/hooks/useHover";
 import { motion } from "motion/react";
 import { useUIContext } from "@/providers/UIProvider";
 import { movieSamples } from "@/temp/movies.samples";
+import { useLineContext } from "@/providers/LineProvider";
 
-export default function NodeControlButton({role, test=false}: {role: "add" | "clear", test?: boolean}) {
+export default function NodeControlButton(
+    {role, point=false, test=false}: 
+    {role: "add" | "clear", test?: boolean, point?:boolean}
+) {
     const nodesCtx = useNodeContext();
     const uiCtx = useUIContext();
+    const lineContext = useLineContext();
     const [num, setNum] = useState(0);
     const [isHovering, ref] = useHover<HTMLButtonElement>();
 
@@ -44,6 +49,37 @@ export default function NodeControlButton({role, test=false}: {role: "add" | "cl
         nodesCtx.clearNodes();
         setNum(0);
     }
+
+    useEffect(() => {
+        if (!ref.current || !point) return;
+
+        const el = ref.current;
+
+        const update = () => {
+            const rect = el.getBoundingClientRect();
+            lineContext.setLine(l => ({
+                ...l,
+                b: {
+                    x: rect.left + rect.width / 2,
+                    y: (rect.top + rect.height) * 1.3
+                }
+            }));
+        };
+
+        update();
+
+        const observer = new ResizeObserver(update);
+        observer.observe(el);
+
+        window.addEventListener("scroll", update);
+        window.addEventListener("resize", update);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener("scroll", update);
+            window.removeEventListener("resize", update);
+        };
+    }, [])
 
     return (
         <motion.button className='border border-white p-2 m-1 rounded-lg cursor-pointer text-sm flex gap-1' 

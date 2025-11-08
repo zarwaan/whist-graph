@@ -13,9 +13,9 @@ export default function TitleBar({}) {
             </div>
             <div className="w-30/100 flex justify-end">
                 <div className="flex gap-2 w-fit">
-                    <NodeControlButton role="add" />
+                    <NodeControlButton role="add" point/>
                     <NodeControlButton role="clear"/>
-                    <NodeControlButton role="add" test/>
+                    {/* <NodeControlButton role="add" test/> */}
                 </div>
             </div>
         </div>
