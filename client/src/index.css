@@ -6,6 +6,15 @@
 
 @import "tailwindcss";
 
+@layer utilities {
+	.shadow-glow-purple {
+		@apply shadow-[0px_0px_10px_3px_rgb(198,210,255)]
+        		shadow-indigo-400/50 
+				border-indigo-600/50 
+				border-1
+	}
+}
+
 :root {
 	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;

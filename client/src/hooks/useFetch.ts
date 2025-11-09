@@ -11,6 +11,7 @@ export default function useFetch(endpoint: string, additionalOptions: object = {
 
     const fetchData = async (endpoint: string) => {
         setLoading(true);
+        setError(null)
         try{
             const response = await fetch(`${import.meta.env.VITE_API_URL_ROOT}/${endpoint}`,{
                 method: 'GET',
@@ -22,6 +23,7 @@ export default function useFetch(endpoint: string, additionalOptions: object = {
             const result = await response.json();
             if(response.ok){
                 setData(result)
+                setError(null)
             }
             else{
                 setError({message: "An error occured"})

@@ -47,15 +47,14 @@ export default function SearchBox({}) {
     
     return (
         <motion.div className="mx-auto mt-3 w-6/10 rounded-xl bg-(--background-color) relative
-                         z-10 text-(--text-color)/80 shadow-[0px_0px_10px_3px_rgb(198,210,255)]
-                        shadow-indigo-400/50 border-indigo-600/50 border-1 h-fit max-h-[70%] min-h-0 flex overflow-hidden" 
+                         z-10 text-(--text-color)/80 shadow-glow-purple 
+                         h-fit max-h-[70%] min-h-0 flex overflow-hidden" 
             style={{
                 gridArea: "stack"
             }}
             initial={{opacity: 0, scale: '0%'}}
             animate={{opacity: 1, scale: '100%'}}
-            exit={{opacity: 0, scale: '0%'}}
-            // transition={{duration: 0.3, ease: 'sp'}}    
+            exit={{opacity: 0, scale: '0%'}}   
             transition={{duration:0.35, ease:"easeInOut"}}
         >
             <CloseButton />
@@ -85,6 +84,12 @@ export default function SearchBox({}) {
                         </span>
                     }
                 </div>
+                {
+                    !loading && searchResult.length > 0 &&
+                    <div className="absolute w-fit bottom-1 right-3 italics text-sm">
+                        <i>{searchResult.length} results</i>
+                    </div>
+                }
             </div>
         </motion.div>
     )
