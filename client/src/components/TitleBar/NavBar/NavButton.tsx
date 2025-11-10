@@ -5,7 +5,7 @@ import NavButtonHighLight from "./NavButtonHighLight";
 export default function NavButton({button}: {button: NavButton}) {
     const ViewContext = useViewContext();
     return (
-        <div className="flex-1 box-border text-sm">
+        <div className="flex-1 box-border text-sm max-md:text-[11px]">
             <button className=" rounded-full w-full p-1.5 m-auto relative cursor-pointer z-2"
                     onClick={button.onclick}>
                 {

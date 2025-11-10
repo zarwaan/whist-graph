@@ -82,7 +82,8 @@ export default function NodeControlButton(
     }, [])
 
     return (
-        <motion.button className='border border-white p-2 m-1 rounded-lg cursor-pointer text-sm flex gap-1' 
+        <motion.button className='border border-white p-2 m-1 rounded-lg cursor-pointer text-sm flex gap-1
+        max-md:text-[10px]' 
 			onClick={() => {
                 if(test) handleTestAdd();
                 else{
@@ -100,19 +101,26 @@ export default function NodeControlButton(
                 <div style={{
                         transform: `${isHovering ? 'rotate(90deg)' : 'rotate(0deg)'}`
                     }} className="transition-all duration-500 linear">
-                    <Plus size={18}/>
+                    <Plus size={18} className="max-md:size-3.5"/>
                 </div> :
                 role === "clear" ?
                 <div style={{
                         animation: `${isHovering ? 'shake 0.5s linear 2' : ''}`
                     }} className="transition-all duration-500 linear">
-                    <Eraser size={18}/>
+                    <Eraser size={18} className="max-md:size-3.5"/>
                 </div> :
                 ""
             }
+            <span className="hidden md:block">
             {
                 test ? "test" : role === "add" ? "Add new node" : role === "clear" ? "Clear all nodes" : ""
             }
+            </span>
+            <span className="block md:hidden">
+            {
+                test ? "test" : role === "add" ? "New node" : role === "clear" ? "Clear all" : ""
+            }
+            </span>
         </motion.button>
     )
 }
