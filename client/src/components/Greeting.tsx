@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 function Emphasis({text}: {text: string}) {
     return (
-        <span className="bg-blue-100 rounded-2xl p-1.5 px-3 font-bold">
+        <span className="bg-blue-100 rounded-2xl p-1.5 px-3 font-bold max-md:block max-md:py-0  ">
             <span className="mix-blend-difference">
                 {text}
             </span>
@@ -49,19 +49,24 @@ export default function Greeting({}) {
     }, [])
 
     return (
-        <div className="border- mt-[15%] flex flex-col gap-6">
+        <div className="border- mt-[15%] max-md:mt-[25%] flex flex-col gap-6 max-md:scale-80">
             <div className="text-4xl w-fit m-auto font-[800] bg-blue-800 p-3 px-5 rounded-2xl">
                 Welcome!
             </div>
-            <div className="text-2xl font-semibold m-auto leading-[2.2]" ref={ref}>
-                Start searching for 
-                &nbsp;
-                {<Emphasis text={view==="media" ? "actors and directors" : "movies and TV shows"} />}
-                <br />
-                to discover common 
-                &nbsp;
-                {<Emphasis text={view==="media" ? "movies and TV shows" : "actors and directors"} />}
+            <div className="text-2xl font-semibold m-auto leading-[2.2] flex flex-col" ref={ref}>
+                <div>
+                    Start searching for 
+                    &nbsp;
+                    {<Emphasis text={view==="media" ? "actors and directors" : "movies and TV shows"} />}
+                </div>
+                <div>
+                    to discover common 
+                    &nbsp;
+                    {<Emphasis text={view==="media" ? "movies and TV shows" : "actors and directors"} />}
+                </div>
             </div>
         </div>
     )
 }
+
+{/* <span className="hidden max-md:block"><br></br></span> */}

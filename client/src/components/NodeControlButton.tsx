@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { useUIContext } from "@/providers/UIProvider";
 import { movieSamples } from "@/temp/movies.samples";
 import { useLineContext } from "@/providers/LineProvider";
+import Responsive from "./Responsive";
 
 export default function NodeControlButton(
     {role, point=false, test=false}: 
@@ -111,16 +112,14 @@ export default function NodeControlButton(
                 </div> :
                 ""
             }
-            <span className="hidden md:block">
-            {
-                test ? "test" : role === "add" ? "Add new node" : role === "clear" ? "Clear all nodes" : ""
-            }
-            </span>
-            <span className="block md:hidden">
-            {
-                test ? "test" : role === "add" ? "New node" : role === "clear" ? "Clear all" : ""
-            }
-            </span>
+            <Responsive
+                smaller={
+                    test ? "test" : role === "add" ? "New node" : role === "clear" ? "Clear all" : ""
+                }
+                larger={
+                    test ? "test" : role === "add" ? "Add new node" : role === "clear" ? "Clear all nodes" : ""
+                }
+            />
         </motion.button>
     )
 }

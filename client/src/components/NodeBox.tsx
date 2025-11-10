@@ -6,6 +6,7 @@ import { AnimatePresence } from "motion/react";
 import Greeting from "./Greeting";
 import AnimatedLine from "./AnimatedLine";
 import { motion } from "motion/react";
+import Responsive from "./Responsive";
 
 export default function NodeBox({}) {
     const nodectx = useNodeContext();
@@ -21,7 +22,7 @@ export default function NodeBox({}) {
                 <motion.div initial={{opacity: 0}} animate={{opacity: 1}} 
                 transition={{duration: 0.5, ease:"linear"}}>
                     <Greeting />
-                    <AnimatedLine />
+                    <Responsive breakpoint="sm" smaller={""} larger={<AnimatedLine />} />
                 </motion.div>
             }
             </AnimatePresence>
