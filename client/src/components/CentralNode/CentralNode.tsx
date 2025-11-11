@@ -42,7 +42,7 @@ export default function CentralNode({}) {
     return (
         <motion.div className="absolute bg-(--background-color) shadow-glow-purple 
         w-fit max-w-45/100 rounded-2xl left-5/10 top-48/100 -translate-5/10 
-        flex flex-center flex-col px-2 py-2"
+        flex flex-center flex-col px-2 py-2 max-md:max-h-45/100 max-md:max-w-full"
             initial={{opacity: 0}}
             animate={{opacity: 1}}
             exit={{opacity: 0}}
@@ -56,11 +56,11 @@ export default function CentralNode({}) {
         >
             {
                 fetchedWithoutErrors() &&
-                <div className="text-xl font-bold">
+                <div className="text-xl max-md:text-base font-bold">
                     {data.common.length} Common {viewCtx.view === "media" ? "media" : "people"}:
                 </div>
             }
-            <div className="flex gap-5 overflow-x-auto custom-scroll py-3 px-2 w-fit max-w-full m-auto"
+            <div className="flex gap-5 max-md:gap-3 overflow-x-auto custom-scroll py-3 px-2 w-fit max-w-full m-auto max-md:flex-col"
             style={fetchedWithoutErrors() ? {
                 WebkitMaskImage: `linear-gradient(to right,transparent 0,    
                                     black 20px,
@@ -90,7 +90,9 @@ export default function CentralNode({}) {
                     fetchedWithoutErrors() && commonNodes.map((item) => 
                         <CommonNode node={{...item, nodeId: ''+item.id, excluded: false}} key={item.id}/>
                     )
-                    
+                    // peopleSamples.map((item) => 
+                    //     <CommonNode node={{...item, nodeId: ''+item.id, excluded: false}} key={item.id}/>
+                    // )
                 }
                 {
                     (data && !loading && data.common.length === 0) && 

@@ -2,7 +2,7 @@
   max-width: 97vw;
   margin: auto;
   text-align: center;
-  height: 100vh;
+  height: 100dvh;
   /* overflow: hidden; */
   display: flex;
   flex-direction: column;

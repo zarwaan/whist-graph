@@ -89,7 +89,8 @@ export default function NodeControlButton(
                 if(test) handleTestAdd();
                 else{
                     if(role === "add")
-                        handleAdd();
+                        // handleAdd();
+                        handleTestAdd();
                     else if(role === "clear")
                         handleClear();
                 }

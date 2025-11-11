@@ -12,7 +12,7 @@ export default function Node({node, num, index, onRemove, toggleExclusion} : {no
     const ControlButton = ({action} : {action: "delete" | "exclude"}) => {
         return (
             <motion.div
-                className={`w-6 aspect-square aspect-square flex-center rounded-full absolute -top-1
+                className={`w-6 aspect-square flex-center rounded-full absolute -top-1
                             ${action==="delete" ? "bg-red-900 -left-1" : action === "exclude" ? "bg-purple-900 -right-1" : ""}    
                         `}
                 initial={{opacity: 0}}
@@ -56,8 +56,8 @@ export default function Node({node, num, index, onRemove, toggleExclusion} : {no
     useEffect(() => {
         const id = requestAnimationFrame(() => {
             if(ref.current){
-                ref.current.style.left= `calc(${shapeConfig[num][index].x}% - 3em)`
-                ref.current.style.top= `calc(${shapeConfig[num][index].y}% - 4.5em)`
+                ref.current.style.left= `calc(${shapeConfig[num][index].x}%)`
+                ref.current.style.top= `calc(${shapeConfig[num][index].y}%)`
                 ref.current.style.opacity = "1"
             }
         })
@@ -65,10 +65,11 @@ export default function Node({node, num, index, onRemove, toggleExclusion} : {no
     },[num])
 
     return (
-        <div className='w-[6em] absolute transition-all duration-500 p-2 border-' ref={ref}
-            style={{     
-                left : `calc(${shapeConfig[num-1]?.[index-1]?.x || 50}% - 3em)`,
-                top : `calc(${shapeConfig[num-1]?.[index-1]?.y || 51}% - 4.5em)`,
+        <div className='node w-[6em] max-md:w-[5em] absolute transition-all duration-500 p-2 border-' ref={ref}
+            style={{   
+                left : `calc(${shapeConfig[num-1]?.[index-1]?.x || 50}%)`,
+                top : `calc(${shapeConfig[num-1]?.[index-1]?.y || 51}%)`,
+                transform: 'translate(-50%,-50%)',
                 opacity: 0
             }}
         >
@@ -90,7 +91,7 @@ export default function Node({node, num, index, onRemove, toggleExclusion} : {no
             </AnimatePresence>
             {
                 isHovering &&
-                <div className="text-[13px] line-clamp-2">{node.title}</div>
+                <motion.div className="text-[13px] line-clamp-2" >{node.title}</motion.div>
             }
         </div> 
     )

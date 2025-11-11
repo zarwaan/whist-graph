@@ -13,7 +13,7 @@ export default function NodeBox({}) {
     const {showCommon} = useUIContext();
 
     return (
-        <div className="m-auto w-8/10 border- border-white h-full relative" style={{
+        <div className="m-auto w-8/10 max-md:w-9/10 border- border-white h-full relative" style={{
             gridArea: "stack"
         }}>
             <AnimatePresence>
