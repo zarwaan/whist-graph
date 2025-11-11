@@ -78,7 +78,7 @@ export default function CentralNode({}) {
             >
                 {
                     loading && 
-                    <div className="w-[5em]">
+                    <div className="w-[5em] max-md:m-auto">
                         <Loader />
                     </div>
                 }

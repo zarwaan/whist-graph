@@ -48,7 +48,8 @@ export default function SearchBox({}) {
     return (
         <motion.div className="mx-auto mt-3 w-6/10 rounded-xl bg-(--background-color) relative
                          z-10 text-(--text-color)/80 shadow-glow-purple 
-                         h-fit max-h-[70%] min-h-0 flex overflow-hidden" 
+                         h-fit max-h-[70%] min-h-0 flex overflow-hidden
+                         max-md:w-9/10 max-md:absolute max-md:left-5/10 max-md:mt-0 max-md:-translate-x-5/10" 
             style={{
                 gridArea: "stack"
             }}
@@ -62,7 +63,7 @@ export default function SearchBox({}) {
                 <div className="">
                     <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
                 </div>
-                <div className="mx-auto w-75/100 flex flex-col gap-4 min-h-0 overflow-y-scroll custom-scroll p-3 py-2">
+                <div className="mx-auto w-75/100 max-md:w-90/100 flex flex-col gap-4 min-h-0 overflow-y-scroll custom-scroll p-3 py-2">
                     {
                         debouncedTerm === "" ?
                         <span className="flex gap-2 w-fit m-auto leading-[1.3]">

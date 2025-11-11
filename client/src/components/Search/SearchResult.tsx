@@ -34,15 +34,15 @@ export default function SearchResult({item}: {item: Media | Person}) {
             <div className="flex-1">
                 <img src={makeImageSource(item.imagePath || "", "w154")} alt={item.title} className="rounded-[calc(20px-var(--spacing)*2)]"/>
             </div>
-            <div className="flex flex-col w-80/100">
-                <span className="text-xl font-bold max-w-full w-fit truncate">
+            <div className="flex flex-col w-80/100 max-md:w-72/100">
+                <span className="text-xl max-md:text-lg font-bold max-w-full w-fit truncate">
                     {
                         item.title
                     }
                 </span>
                 {
                     (item.type === "movie" || item.type === "tv") &&
-                    <span className="w-fit text-[12px] font-light">
+                    <span className="w-fit text-[12px] max-md:text-[11px] font-light">
                         {
                             item.year
                         }
